@@ -2,36 +2,49 @@ annotated-types==0.8.0
     # via pydantic
 anyio==4.15.1
     # via
+    #   httpx
     #   httpx2
     #   langsmith
 certifi==2026.7.22
-    # via requests
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
 charset-normalizer==3.5.1
     # via requests
 distro==1.9.0
     # via langsmith
 h11==0.16.0
-    # via httpcore2
+    # via
+    #   httpcore
+    #   httpcore2
+httpcore==1.0.9
+    # via httpx
 httpcore2==2.13.1
     # via httpx2
+httpx==0.28.1
+    # via langchain-core
 httpx2==2.13.1
     # via langsmith
 idna==3.20
     # via
     #   anyio
+    #   httpx
     #   httpx2
     #   requests
 jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.1.1
     # via jsonpatch
-langchain-core==1.0.7
+langchain-core==1.6.4
     # via -r github_onboarding/langchain/requirements.in
+langchain-protocol==0.0.19
+    # via langchain-core
 langsmith==0.14.0
     # via langchain-core
 orjson==3.12.0
     # via langsmith
-packaging==25.0
+packaging==26.3
     # via
     #   langchain-core
     #   langsmith
@@ -61,6 +74,7 @@ typing-extensions==4.16.0
     # via
     #   anyio
     #   langchain-core
+    #   langchain-protocol
     #   langsmith
     #   pydantic
     #   pydantic-core
@@ -70,7 +84,9 @@ typing-inspection==0.4.4
 urllib3==2.8.0
     # via requests
 uuid-utils==0.17.1
-    # via langsmith
+    # via
+    #   langchain-core
+    #   langsmith
 websockets==17.1
     # via langsmith
 xxhash==4.0.1

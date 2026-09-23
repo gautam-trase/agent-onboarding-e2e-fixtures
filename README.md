@@ -65,7 +65,8 @@ FIXTURE_FRAMEWORK=langchain /tmp/onboarding-langchain/bin/python -m pytest tests
 FIXTURE_FRAMEWORK=adk /tmp/onboarding-adk/bin/python -m pytest tests/
 ```
 
-CI verifies the framework entrypoint and the printed JSON for each example.
+CI audits each complete dependency lock for known vulnerabilities, then verifies
+the framework entrypoint and the printed JSON for each example.
 
 ## Pinning and updating
 
@@ -82,4 +83,4 @@ uv pip compile --python-version 3.13 --no-header github_onboarding/adk/requireme
 ```
 
 Framework references: [LangChain RunnableSequence](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSequence)
-and [Google ADK](https://github.com/google/adk-python/tree/v1.14.1/src/google/adk).
+and [Google ADK](https://github.com/google/adk-python/tree/v2.9.2/src/google/adk).

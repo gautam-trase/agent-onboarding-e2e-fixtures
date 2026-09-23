@@ -18,6 +18,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Audit locked fixture dependencies
+        run: |
+          python -m venv /tmp/fixture-audit
+          /tmp/fixture-audit/bin/python -m pip install pip-audit==2.10.1
+          /tmp/fixture-audit/bin/pip-audit --strict --no-deps --disable-pip -r github_onboarding/${{ matrix.framework }}/requirements.txt
       - run: python -m pip install -r github_onboarding/${{ matrix.framework }}/requirements.txt pytest
       - run: python -m pytest tests/
         env:

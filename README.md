@@ -18,16 +18,54 @@ execution; do not add requirements.txt to those directories.
 
 ## Run an example
 
-Use Python 3.13 and a separate virtual environment for each framework:
+Both examples take the fixed input `[2, 3, 5]`, calculate its sum through the
+framework, verify that it is 10, and return a result. The command-line runner
+prints that result as JSON. This is real framework execution; it does not call an
+LLM or require any API key, GitHub token, login, or other credential.
+
+Use Python 3.13 and separate virtual environments:
+
+### LangChain
 
 ```sh
 python3.13 -m venv /tmp/onboarding-langchain
-/tmp/onboarding-langchain/bin/python -m pip install -r github_onboarding/langchain/requirements.txt pytest
-FIXTURE_FRAMEWORK=langchain /tmp/onboarding-langchain/bin/python -m pytest tests/
+/tmp/onboarding-langchain/bin/python -m pip install -r github_onboarding/langchain/requirements.txt
+/tmp/onboarding-langchain/bin/python run_example.py langchain
 ```
 
-For ADK, repeat with a different virtual environment and replace `langchain` with
-`adk`. CI runs the two examples in separate environments.
+Expected standard output:
+
+```json
+{"framework": "langchain", "input": [2, 3, 5], "result": "langchain-onboarding:10"}
+```
+
+### Google ADK
+
+```sh
+python3.13 -m venv /tmp/onboarding-adk
+/tmp/onboarding-adk/bin/python -m pip install -r github_onboarding/adk/requirements.txt
+/tmp/onboarding-adk/bin/python run_example.py adk
+```
+
+Expected standard output:
+
+```json
+{"framework": "adk", "input": [2, 3, 5], "result": "adk-onboarding:10"}
+```
+
+Dependencies may emit warnings on standard error. An unexpected framework result
+raises an error and exits unsuccessfully rather than printing a success result.
+
+### Tests
+
+Install `pytest` in each environment, then run with its Python interpreter:
+
+```sh
+FIXTURE_FRAMEWORK=langchain /tmp/onboarding-langchain/bin/python -m pytest tests/
+FIXTURE_FRAMEWORK=adk /tmp/onboarding-adk/bin/python -m pytest tests/
+```
+
+CI verifies the framework entrypoint and the printed JSON for each example.
 
 ## Pinning and updating
 

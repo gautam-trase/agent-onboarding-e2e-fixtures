@@ -1,0 +1,3 @@
+name: e2e-github-adk-invalid
+framework: adk
+entrypoint: agent.onboarding_agent:run

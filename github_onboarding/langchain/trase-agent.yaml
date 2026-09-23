@@ -1,0 +1,3 @@
+name: e2e-github-langchain
+framework: langchain
+entrypoint: agent.onboarding_agent:run
